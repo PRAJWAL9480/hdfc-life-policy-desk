@@ -1,0 +1,35 @@
+package com.hdfc.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import java.util.*;
+import com.hdfc.beans.*;
+
+@RestController
+public class EmployeeController {
+
+    @GetMapping("/hello")
+    public String sayHello() {
+
+        return "Welcome to Employee Management System";}
+    @GetMapping("/employees")
+    public List<Employee> getAllEmployees() {
+
+    		List<Employee> employees = new ArrayList<>(
+
+    				List.of(
+
+    					new Employee(101, "Raj", 85000), 
+    					new Employee(102, "Simran", 95000),
+    					new Employee(103, "Rohit", 80000), 
+    					new Employee(104, "Ankit", 75000),
+    					new Employee(105, "Priya", 82000)
+    				)
+
+    		);
+
+    		return employees;
+    	}
+
+    
+}

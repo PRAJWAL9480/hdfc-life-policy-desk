@@ -1,0 +1,5 @@
+package com.hdfc.dto;
+
+public class CourseRequestDto {
+
+}

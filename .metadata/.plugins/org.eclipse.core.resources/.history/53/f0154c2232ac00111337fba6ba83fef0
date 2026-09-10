@@ -1,0 +1,105 @@
+package com.hdfc.controller;
+
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import com.hdfc.dto.CourseRequestDto;
+import com.hdfc.dto.CourseResponseDto;
+import com.hdfc.service.CourseService;
+
+import jakarta.validation.Valid;
+
+@RestController
+@RequestMapping("/api/courses")
+public class CourseController {
+
+    private final CourseService courseService;
+
+    public CourseController(CourseService courseService) {
+        this.courseService = courseService;
+    }
+
+    // Create course
+    @PostMapping(t)
+    public ResponseEntity<CourseResponseDto> createCourse(
+            @Valid @RequestBody CourseRequestDto request) {
+
+        return new ResponseEntity<>(
+                courseService.createCourse(request),
+                HttpStatus.CREATED);
+    }
+
+    // Get course by ID
+    @GetMapping("/{courseId}")
+    public ResponseEntity<CourseResponseDto> getCourseById(
+            @PathVariable Integer courseId) {
+
+        return ResponseEntity.ok(
+                courseService.getCourseById(courseId));
+    }
+
+    // Get all courses
+    @GetMapping
+    public ResponseEntity<List<CourseResponseDto>> getAllCourses() {
+
+        return ResponseEntity.ok(
+                courseService.getAllCourses());
+    }
+
+    // Update course
+    @PutMapping("/{courseId}")
+    public ResponseEntity<CourseResponseDto> updateCourse(
+            @PathVariable Integer courseId,
+            @Valid @RequestBody CourseRequestDto request) {
+
+        return ResponseEntity.ok(
+                courseService.updateCourse(courseId, request));
+    }
+
+    // Delete course
+    @DeleteMapping("/{courseId}")
+    public ResponseEntity<Void> deleteCourse(
+            @PathVariable Integer courseId) {
+
+        courseService.deleteCourse(courseId);
+
+        return ResponseEntity.noContent().build();
+    }
+
+    // Get courses by trainer
+    @GetMapping("/trainer/{trainerName}")
+    public ResponseEntity<List<CourseResponseDto>> getCoursesByTrainer(
+            @PathVariable String trainerName) {
+
+        return ResponseEntity.ok(
+                courseService.getCoursesByTrainer(trainerName));
+    }
+
+    // Get courses with fees less than amount
+    @GetMapping("/fees-less-than/{amount}")
+    public ResponseEntity<List<CourseResponseDto>> getCoursesByFeesLessThan(
+            @PathVariable Double amount) {
+
+        return ResponseEntity.ok(
+                courseService.getCoursesByFeesLessThan(amount));
+    }
+
+    // Get course count
+    @GetMapping("/count")
+    public ResponseEntity<Long> getCourseCount() {
+
+        return ResponseEntity.ok(
+                courseService.getCourseCount());
+    }
+
+    // Get most popular course
+    @GetMapping("/popular")
+    public ResponseEntity<CourseResponseDto> getMostPopularCourse() {
+
+        return ResponseEntity.ok(
+                courseService.getMostPopularCourse());
+    }
+}

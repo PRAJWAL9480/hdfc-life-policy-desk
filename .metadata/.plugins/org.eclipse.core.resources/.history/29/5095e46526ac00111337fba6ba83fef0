@@ -1,0 +1,16 @@
+
+package com.hdfc.service;
+import java.util.*;
+import com.hdfc.dto.*;
+public interface CourseService {
+	CourseResponseDto createCourse(CourseRequestDto request);
+	CourseResponseDto getCourseById(Integer courseId);
+	List<CourseResponseDto>getAllCourses();
+	CourseResponseDto updateCourse(Integer courseId,CourseRequestDto request);
+	void deleteCourse(Integer courseId);
+	List<CourseResponseDto>getCoursesByTrainer(String trainerName);
+	List<CourseResponseDto>getCoursesByFeesLessThan(Double amount);
+	long getCoursesCount();
+	CourseResponseDto getMostPopularCourse();
+
+}

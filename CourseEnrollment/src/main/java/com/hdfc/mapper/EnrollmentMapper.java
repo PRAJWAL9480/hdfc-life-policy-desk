@@ -1,0 +1,34 @@
+package com.hdfc.mapper;
+
+import com.hdfc.dto.EnrollmentRequestDto;
+import com.hdfc.dto.EnrollmentResponseDto;
+import com.hdfc.entity.Enrollment;
+
+public class EnrollmentMapper {
+
+    public static Enrollment toEntity(EnrollmentRequestDto dto) {
+
+        Enrollment enrollment = new Enrollment();
+
+        enrollment.setEmployeeId(dto.getEmployeeId());
+        enrollment.setEmployeeName(dto.getEmployeeName());
+        enrollment.setCourseId(dto.getCourseId());
+
+        return enrollment;
+    }
+
+    public static EnrollmentResponseDto toResponseDto(
+            Enrollment enrollment) {
+
+        EnrollmentResponseDto dto = new EnrollmentResponseDto();
+
+        dto.setEnrollmentId(enrollment.getEnrollmentId());
+        dto.setEmployeeId(enrollment.getEmployeeId());
+        dto.setEmployeeName(enrollment.getEmployeeName());
+        dto.setCourseId(enrollment.getCourseId());
+        dto.setEnrollmentDate(enrollment.getEnrollmentDate());
+        dto.setStatus(enrollment.getStatus());
+
+        return dto;
+    }
+}
