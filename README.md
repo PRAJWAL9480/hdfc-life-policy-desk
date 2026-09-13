@@ -185,7 +185,6 @@ The PolicyStore interface is implemented by:
 InMemoryPolicyStore
 Database Migration
 
-
 Flyway migrations are located under:
 
 src/main/resources/db/migration
