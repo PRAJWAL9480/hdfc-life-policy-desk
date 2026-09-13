@@ -5,3 +5,10 @@ target/
 .settings/
 .factorypath
 .springBeans
+.metadata/
+CourseEnrollment/
+Dempproject/
+Employee-Management/
+EmployeeManagementApp/
+SpringDemo/
+SpringDemo2/
